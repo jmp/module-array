@@ -32,19 +32,19 @@
 		test_fail_expr = #expr; \
 		test_fail_file = __FILE__; \
 		test_fail_line = __LINE__; \
-		test_malloc_enable(); \
-		test_realloc_enable(); \
 		return TEST_FAIL; \
 	}
 
 /*
- * Run the given test and print the results for that test.
+ * Run the given test function and print the results for that test.
  *
  * This will print either "OK" or "FAIL", followed by the name of the test.
  * If the test fails, the filename and line number as well as the expression
  * that failed will be printed.
  */
 #define test_run(test_name) { \
+		test_malloc_enable(); \
+		test_realloc_enable(); \
 		test_fail_expr = NULL; \
 		test_fail_file = NULL; \
 		test_fail_line = 0L; \
@@ -143,7 +143,10 @@ void *__wrap_malloc(size_t s)
 /* Counts the number of realloc calls made so far. */
 long test_realloc_call_count = 0;
 
-/* After how many calls realloc will fail (return NULL). */
+/*
+ * After how many calls realloc will fail (return NULL).
+ * If set to negative, realloc performs normally.
+ */
 long test_realloc_fail_after = -1;
 
 extern void *__real_realloc(void *ptr, size_t s);
