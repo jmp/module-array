@@ -10,7 +10,7 @@
 	#define memory_free free
 #endif
 
-/* Defines how many the array can store initially */
+/* Defines how many elements the array can store initially */
 #define ARRAY_INITIAL_CAPACITY 16
 
 /* Capacity is increased by this factor when the array gets full */

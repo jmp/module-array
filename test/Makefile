@@ -13,10 +13,10 @@ ifdef SystemRoot
 endif
 
 $(TARGET):
-	$(CC) $(CFLAGS) $(SOURCES) -o $(TARGET)
+	@$(CC) $(CFLAGS) $(SOURCES) -o $(TARGET)
 
 clean:
-	$(RM) $(TARGET)
-	$(RM) *.gc*
+	@$(RM) $(TARGET)
+	@$(RM) *.gc*
 
 .PHONY: clean
